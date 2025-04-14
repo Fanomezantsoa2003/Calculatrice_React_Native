@@ -1,11 +1,11 @@
 import { Image, StyleSheet, Platform } from 'react-native';
 import { useState } from 'react';
 import { View, TouchableOpacity, Text, FlatList, TextInput } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 const chiffre = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 export default function HomeScreen() {
   const [inputValue, setInputValue] = useState('');
-  const operateur = ['+', '-', '*', '/'];
   const [result, setResult] = useState('');
 
   const handlePress = (item) => {
@@ -29,9 +29,12 @@ export default function HomeScreen() {
     }
   };
   return (
-    <View style={{ alignItems: 'center', justifyContent: 'center', height: '100%', width: '100%' }}>
-       <Text style={{color:'white'}}>{inputValue}</Text>
-      <View style={{height:500}}>     
+    <View style={styles.container}>
+      <View style={{ height: 400, width: '100%', backgroundColor: 'black', justifyContent: 'center', alignItems: 'center' }}>
+      <Text style={{color:'white', fontSize:50}}>{inputValue}</Text>
+      </View>
+    <View style={{ height: '100%', width: '100%', flexDirection:'row' }}>
+      <View style={{height:500}}>
         <FlatList
           data={chiffre}
           renderItem={({ item }) => (
@@ -46,33 +49,34 @@ export default function HomeScreen() {
           showsHorizontalScrollIndicator={false}
           />
       </View>
-      <View style={{flexWrap:'wrap', flexDirection:'row', justifyContent:'space-between', width:'100%', padding:10}}>
-        <TouchableOpacity style={{backgroundColor:'gray', padding:20, borderRadius:10}} onPress={() => handlePress('+')}>
-          <Text style={{ fontSize: 20, color: 'white', marginTop: 20 }}>+</Text>
+      <View style={{flexWrap:'wrap', flexDirection:'column', width:'100%', padding:10, height:400}}>
+        <TouchableOpacity style={{backgroundColor:'gray', padding:10, borderRadius:10, margin:10}} onPress={() => handlePress('+')}>
+          <Text style={{ fontSize: 40, color: 'white'}}>+</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{backgroundColor:'gray', padding:20, borderRadius:10}} onPress={() => handlePress('-')}>
-          <Text style={{ fontSize: 20, color: 'white', marginTop: 20 }}>-</Text>
+        <TouchableOpacity style={{backgroundColor:'gray', padding:10, borderRadius:10, margin:10}} onPress={() => handlePress('-')}>
+          <Text style={{ fontSize: 40, color: 'white'}}>-</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{backgroundColor:'gray', padding:20, borderRadius:10}} onPress={() => handlePress('*')}>
-          <Text style={{ fontSize: 20, color: 'white', marginTop: 20 }}>*</Text>
+        <TouchableOpacity style={{backgroundColor:'gray', padding:10, borderRadius:10, margin:10}} onPress={() => handlePress('*')}>
+          <Text style={{ fontSize: 40, color: 'white'}}>*</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{backgroundColor:'gray', padding:20, borderRadius:10}} onPress={() => handlePress('/')}>
-          <Text style={{ fontSize: 20, color: 'white', marginTop: 20 }}>/</Text>
+        <TouchableOpacity style={{backgroundColor:'gray', padding:10, borderRadius:10, margin:10}} onPress={() => handlePress('/')}>
+          <Text style={{ fontSize: 40, color: 'white'}}>/</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{backgroundColor:'gray', padding:20, borderRadius:10}} onPress={() => handlePress('=')}>
-          <Text style={{ fontSize: 20, color: 'white', marginTop: 20 }}>=</Text>
+        <TouchableOpacity style={{backgroundColor:'gray', padding:10, borderRadius:10, margin:10}} onPress={() => handlePress('=')}>
+          <Text style={{ fontSize: 40, color: 'white'}}>=</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{backgroundColor:'gray', padding:20, borderRadius:10}} onPress={() => handlePress('C')}>
-          <Text style={{ fontSize: 20, color: 'white', marginTop: 20 }}>Effacer</Text>
+        <TouchableOpacity style={{backgroundColor:'gray', padding:10, borderRadius:10, margin:10}} onPress={() => handlePress('C')}>
+          <Ionicons name="trash" size={24} color="white" />
         </TouchableOpacity>
       </View>
+    </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   chiffre: {
-    fontSize: 50,
+    fontSize: 30,
     fontWeight: 'bold',
     color: 'black',
   }
